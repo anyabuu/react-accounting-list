@@ -1,0 +1,29 @@
+.list {
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.list__item {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    line-height: 1.2;
+    font-weight: 400;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 4px;
+}
+
+.list__item-text {
+    width: 30%;
+}
+
+.list__item-type {
+    width: 10%;
+}
+
+.list__item-amount {
+    width: 10%;
+}

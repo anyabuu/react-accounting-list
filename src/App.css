@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+
+.header {
+  background-color: peachpuff;
+  border: 2px solid black;
+}
+
+.header__container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.section {
+  padding-top: 50px;
+}
+
+.title {
+  ont-weight: 600;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 1.1;
+  padding-bottom: 40px;
+}
+
+
+
