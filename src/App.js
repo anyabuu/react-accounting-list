@@ -9,27 +9,9 @@ class App extends React.Component {
     state = {
         balance: 100,
         items: [],
-
-        text: '',
-        type: 'income',
-        amount: '',
     }
 
-    onInputTextChange = (e) => {
-        this.setState({ text: e.target.value });
-    }
-
-    onInputAmountChange = (e) => {
-        this.setState({ amount: e.target.value });
-    }
-
-    onInputTypeChange = (e) => {
-        this.setState({ type: e.target.value });
-    }
-
-
-    onHandleSubmit = (e) => {
-        e.preventDefault();
+    addItem = ({text, amount, type}) => {
 
         const date = new Date();
         const year = date.getFullYear();
@@ -41,40 +23,35 @@ class App extends React.Component {
             year,
         ].join('-');
 
-        if (this.state.text.length === 0 || this.state.amount.length === 0 || this.state.type.length === 0) {
-            return;
-        }
         const newItem = {
-            text: this.state.text,
-            type: this.state.type,
-            amount: `${this.state.amount}$`,
+            text: text,
+            type: type,
+            amount: `${amount}$`,
             date: yearDate,
             id: Date.now()
         };
 
-        if (this.state.type === 'income'){
-            this.setState({
-                balance: this.state.balance + Number(this.state.amount)
-            });
+        if (type === 'income'){
+            this.setState(({balance}) => ({
+                balance: balance + (amount)
+            }));
         }
 
-        if (this.state.type === 'extend'){
+        if (type === 'extend'){
             if (this.state.amount > this.state.balance){
                 alert('You dont have enough money!')
                 return
             }
-            this.setState({
-                balance: this.state.balance - this.state.amount,
-            });
+            this.setState(({balance}) => ({
+                balance: balance - amount,
+            }));
         }
 
-        this.setState({
-            items: [...this.state.items, newItem],
-            text: '',
-            type: this.state.type,
-            amount: ''
-        });
+        this.setState(({items}) => ({
+            items: [...items, newItem],
+        }));
     }
+
 
   render() {
     return (
@@ -90,7 +67,9 @@ class App extends React.Component {
                         My accounting
                     </h1>
                     <BillList items={this.state.items}/>
-                    <BillForm text={this.state.text} amount={this.state.amount} onHandleSubmit={this.onHandleSubmit} onInputTextChange={this.onInputTextChange} onInputTypeChange={this.onInputTypeChange} onInputAmountChange={this.onInputAmountChange}/>
+                    <BillForm
+                        handleAddItem={this.addItem}
+                    />
                 </div>
             </section>
         </>

@@ -27,3 +27,11 @@
 .list__item-amount {
     width: 10%;
 }
+
+.list__item-income {
+    background-color: darkseagreen;
+}
+
+.list__item-extend {
+    background-color: pink;
+}

@@ -7,7 +7,7 @@ class BillList extends React.Component {
         return (
             <ul className='list'>
                 {this.props.items.map(item => (
-                    <li className='list__item' key={item.id}>
+                    <li className={`list__item ${item.type === 'income' ? 'list__item-income' : 'list__item-extend'}`} key={item.id}>
                         <div className='list__item-text'>
                             {item.text}
                         </div>
